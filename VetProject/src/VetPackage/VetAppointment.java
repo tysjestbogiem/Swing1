@@ -5,22 +5,38 @@ package VetPackage;
 
 public class VetAppointment<T, U> {
 	
+	
+	// generic member variables
+	private T animal;
+	private U diagnosis;
+	
+	
 	// constructor 
 	public VetAppointment() {
 		
 	}
 	
-	// pre-generics, this would work for any given animal
-	// but super unsafe
-	public Object diagnose(Object animal) {
+	// generic method
+	public U diagnose(T theAnimal) {
 		
-		Object diagnosis = new Object();
+		RatDiagnosis sickRat;
+		HamsterDiagnosis sickHamster;
 		
-		// some complicated code to decide what is wrong with the given animal
+		if (theAnimal instanceof Rat) {
+			System.out.println("Hi Rat.");
+			sickRat = new RatDiagnosis();
+			return (U) sickRat;
+			
+		} else if (theAnimal instanceof Hamster) {
+			System.out.println("Hi Hamster");
+			sickHamster = new HamsterDiagnosis();
+			return (U) sickHamster;
+			
+		} else {
+			System.out.println("Not found.");
+		}
 		
 		return diagnosis;
-				
-		
 	}
 	
 
